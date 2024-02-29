@@ -1,0 +1,265 @@
+/* Root */
+:root{
+    --color1: white;
+    --color2: orangered;
+    --color3: black;
+}
+
+
+/* CSS for Homepage */
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    padding: 10px;
+    background-color: var(--color1);
+    color: var(--color2);
+}
+header{
+    padding: 10px;
+    font-family: cursive;
+    font-size: large;
+}
+nav{
+    display: flex;
+    background-color: var(--color2);
+    border: 1px solid var(--color2);
+}
+nav a{
+    font-size: larger;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: var(--color1);
+}
+nav a:hover{
+    background-color: var(--color1);
+    color: var(--color2);
+}
+.active{
+    background-color: var(--color1);
+    color: var(--color2);
+}
+main{
+    background-image: url(./images/bg4.jpg);
+    border: 2px solid var(--color2);
+    margin: 5px 0 5px 0;
+    text-align: center;
+}
+.display{
+    padding: 50px;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+footer{
+    text-align: center;
+    background-color: var(--color2);
+    color: var(--color1);
+    padding: 20px;
+    line-height: 25px;
+}
+.footer-logo{
+    background-color: white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+footer .vs{
+    color: white;
+    font-family: math;
+    font-size: large;
+}
+footer .vs:hover{
+    color: var(--color3);
+}
+footer .copyright{
+    font-family: 'Courier New', Courier, monospace;
+}
+footer a .fa-brands{
+    color: var(--color1);
+}
+footer .fa-brands:hover{
+    color: var(--color3);
+}
+
+/* CSS for About Page */
+.about-body{
+    margin: 10px 0;
+    padding: 20px;
+    border: 2px dashed var(--color2);
+    text-align: center;
+}
+.about-body hr{
+    border-color: var(--color2);
+    margin: 10px;
+}
+.about-body .mark{
+    background-color: var(--color2);
+    color: var(--color1);
+    padding: 5px;
+    margin: 5px 0;
+}
+.about-body img{
+    border: 2px solid var(--color2);
+    width: 300px;
+}
+.about-body .v-box{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+/* CSS for Contact Page */
+.contact-body{
+    background-color: var(--color2);
+    color: var(--color1);
+    text-align: center;
+    margin: 10px 0;
+    padding: 10px;
+}
+.contact-body .title{
+    background-color: var(--color1);
+    color: var(--color2);
+    padding: 10px;
+}
+.contact-body h1, h2{
+    margin: 30px 0;
+}
+.contact-body hr{
+    margin: 15px 0;
+    border-color: var(--color1);
+}
+.contact-body a{
+    color: var(--color1);
+}
+.contact-body span a{
+    border: 2px solid var(--color1);
+    padding: 5px;
+    background-color: var(--color1);
+    color: var(--color2);
+    text-decoration: none;
+}
+.contact-body span a:hover{
+    background-color: var(--color2);
+    color: var(--color1);
+}
+
+/* CSS for Start */
+.start h1 .letter{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.5);
+}
+.start h1 .letter:hover{
+    color: var(--color2);
+}
+.start-button{
+    background-color: var(--color2);
+    color: var(--color1);
+    text-decoration: none;
+    border: 2px solid var(--color3);
+    padding: 5px;
+}
+.start-button:hover{
+    background-color: var(--color1);
+    color: var(--color2);
+    border: 2px dashed var(--color2);
+}
+
+
+/* CSS for iframes */
+iframe{
+    border: 5px solid var(--color2);
+    width: 60%;
+    height: 450px;
+}
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
+.buttons .hide{
+    visibility: hidden;
+}
+button{
+    background-color: var(--color2);
+    border: 2px solid var(--color2);
+    padding: 5px 0;
+}
+button:hover{
+    background-color: var(--color1);
+    color: var(--color2);
+}
+button a{
+    color: var(--color1);
+    text-decoration: none;
+    padding: 5px 15px;
+}
+button a:hover{
+    color: var(--color2);
+}
+.subsite h2{
+    margin: 10px;
+    text-align: center;
+    border-width: 2px 0 2px 0;
+    border-style: solid;
+    border-color: var(--color2);
+}
+.subsite{
+    text-align: center;
+}
+.subsite img{
+    width: 340px;
+    height: 340px;
+}
+
+
+/* For Mobiles */
+@media only screen and (max-width: 455px){
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    body{
+        text-align: center;
+    }
+    header{
+        padding: 20px;
+        font-size: large;
+    }
+    nav{
+        justify-content: space-between;
+    }
+    .display{
+        padding: 30px;
+    }
+
+    /* Mobile - iframe */
+    iframe{
+        width: 95%;
+    }
+    .buttons{
+        display: flex;
+        justify-content: space-between;
+        padding: 70px 0;
+    }
+    button{
+        padding: 5px;
+    }
+    button a{
+        padding: 5px 0;
+    }
+    .subsite img{
+        width: 200px;
+        height: 200px;
+    }
+    .about-body img{
+        width: 250px;
+    }
+    .contact-body{
+        text-wrap: balance;
+    }
+}
+
+/* Mobile - About */
+@media only screen and (max-width: 670px) {
+    .about-body .v-box{
+        flex-direction: column;
+    }
+}
