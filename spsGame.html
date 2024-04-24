@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stone Paper Scissors Game</title>
+    <style>
+        :root{
+            --color1: white;
+            --color2: orangered;
+            --color3: black;
+        }
+
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            padding: 10px;
+            background-color: var(--color1);
+            color: var(--color2);
+        }
+        header{
+            padding: 10px;
+            font-size: large;
+        }
+        nav{
+            display: flex;
+            background-color: var(--color2);
+            border: 1px solid var(--color2);
+        }
+        nav a{
+            font-size: larger;
+            padding: 5px 10px;
+            text-decoration: none;
+            color: var(--color1);
+            line-height: 1;
+        }
+        nav a:hover{
+            background-color: var(--color1);
+            color: var(--color2);
+        }
+        .active{
+            background-color: var(--color1);
+            color: var(--color2);
+        }
+        .info{
+            margin: 10px;
+            text-align: left;
+            padding: 10px;
+            color: var(--color2);
+            border: 10px solid var(--color2);
+        }
+        .info h3{
+            background-color: var(--color2);
+            color: var(--color1);
+            padding: 5px;
+            margin: 5px 0;
+        }
+        .game{
+            display: flex;
+            margin: 10px;
+            font-family: sans-serif;
+            line-height: 2;
+        }
+        .game-body{
+            text-align: center;
+            color: var(--color2);
+            border: 10px solid var(--color2);
+            width: 75%;
+            margin: 10px;
+            font-weight: bold;
+        }
+        .game-data{
+            text-align: center;
+            color: var(--color2);
+            border: 10px solid var(--color2);
+            width: 25%;
+            margin: 10px;
+        }
+        .game-body h1{
+            background-color: var(--color2);
+            color: var(--color1);
+            margin: 20px 0;
+        }
+        .game-body button{
+            margin: 5px;
+            padding: 10px;
+            background-color: var(--color1);
+            border: 5px solid var(--color2);
+            border-radius: 50%;
+        }
+        .game-body button:active{
+            background-color: var(--color2);
+        }
+        .game-body .btn-img{
+            width: 75px;
+            height: 75px;
+            margin: 10px;
+            border-radius: 50%;
+        }
+        .game-data h1{
+            background-color: var(--color2);
+            color: var(--color1);
+            margin: 20px 0;
+        }
+        button {
+            padding: 10px;
+            font-weight: bold;
+            color: var(--color2);
+        }
+        span {
+            color: var(--color2);
+        }
+        #result {
+            color: var(--color1);
+        }
+
+        @media screen and (max-width: 455px) {
+            *{
+                padding: 0;
+                margin: 0;
+            }
+            body{
+                text-align: center;
+            }
+            header{
+                font-size: large;
+            }
+            nav{
+                overflow-y: scroll;
+                text-wrap: nowrap;
+            }
+            .display{
+                margin: 0;
+                padding: 0;
+            }
+            .game{
+                flex-wrap: wrap;
+                gap: 10px;
+                margin: 10px;
+                padding: 0;
+            }
+            .game-body{
+                width: 100%;
+                margin: 0;
+                padding: 10px;
+            }
+            .game-data{
+                width: 100%;
+                margin: 0;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Alphabet</h1>
+    </header>
+    
+    <nav>
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About Us</a>
+        <a href="./contact.html">Contact</a>
+        <a href="https://firstschool.netlify.app/" target="_blank" title="First School Website">First School</a>
+        <a class="active" href="./spsGame.html">Game</a>
+    </nav>
+
+    <div class="game">
+        <div class="game-body">
+            <div class="info">
+                <h3>Instructions:</h3>
+                <p>Stone is beaten by Paper, Paper is beaten by Scissors and Scissors is beaten by Stone. Simple! </p>
+            </div>
+            <h2>Choose any one:</h2>
+            <button onclick="spsMachine('Stone');"><img src="./images/stone.jpeg" alt="stone" class="btn-img"></button>
+            <button onclick="spsMachine('Paper')"><img src="./images/paper.jpeg" alt="stone" class="btn-img"></button>
+            <button onclick="spsMachine('Scissors')"><img src="./images/scissors.jpeg" alt="stone" class="btn-img"></button>
+            <h2>Your Choice: <span id="userchoose"></span></h2>
+            <h2>Computer's Choice: <span id="computerchoose"></span></h2>
+            <h1>Result: <span id="result"></span></h1>
+        </div>
+        <div class="game-data">
+            <h1>Your Scores</h1>
+            <h2>Win : <span id="win"></span></h2>
+            <h2>Lose : <span id="lose"></span></h2>
+            <h2>Tie : <span id="tie"></span></h2>
+
+            <button onclick="resetScore();">Reset Score</button>
+        </div>
+    </div>
+
+    <script>
+        let c = console.log;
+
+        let score;
+        let scoreStr = localStorage.getItem('Score');
+        
+        score = JSON.parse(scoreStr) || {
+            win : 0,
+            lose : 0,
+            tie : 0
+        }
+        
+        let resetScore = ()=>{
+            localStorage.clear();
+            scoreStr = localStorage.getItem('Score');
+            score = {
+                win : 0,
+                lose : 0,
+                tie : 0
+            }
+            showScore();
+        }
+
+        let showScore = ()=>{
+            document.getElementById('win').innerHTML = score.win;
+            document.getElementById('lose').innerHTML = score.lose;
+            document.getElementById('tie').innerHTML = score.tie;
+        }
+        showScore();
+
+        let spsMachine = (userChoice)=>{
+            c(userChoice);
+            document.getElementById('userchoose').innerHTML = userChoice;
+            let randomNumber = Math.random() * 3;
+            c(randomNumber);
+            let computerChoice = ()=>{
+                if (randomNumber > 2) {
+                    return 'Stone';
+                } else if (randomNumber > 1) {
+                    return 'Paper';
+                } else {
+                    return 'Scissors'
+                }
+            }
+            c(computerChoice());
+            document.getElementById('computerchoose').innerHTML = computerChoice();
+            let result = (userChoice)=>{
+                if (userChoice === computerChoice()) {
+                    return `It's a Tie!`;
+                } else if (userChoice === 'Stone'){
+                    return (computerChoice() === "Paper") ? 'You Lose!' : 'You Win!'
+                } else if (userChoice === 'Paper'){
+                    return (computerChoice() === "Scissors") ? 'You Lose!' : 'You Win!';
+                } else if (userChoice === 'Scissors'){
+                    return (computerChoice() === "Stone") ? 'You Lose!' : 'You Win!';
+                }
+            }
+            c(result(userChoice));
+            document.getElementById('result').innerHTML = result(userChoice);
+
+            if (result(userChoice) ==="It's a Tie!"){
+                score.tie++;
+            } else if (result(userChoice) ==="You Lose!") {
+                score.lose++;
+            } else {
+                score.win++;
+            }
+
+            showScore();
+
+            c(score);
+
+            localStorage.setItem('Score', JSON.stringify(score));
+        }
+    </script>
+</body>
+
+</html>
