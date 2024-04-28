@@ -1,4 +1,4 @@
-*Website URL:- https://alphabet-v2.netlify.com*
+*Website URL:- https://alphabet-v2.netlify.app/*
 
 This Website is made by Vatsal Saxena.
 
